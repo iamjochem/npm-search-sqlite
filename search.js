@@ -57,20 +57,29 @@ var do_search   = function(db) {
             if (err)
                 return reject(err);
 
-            var names   = cnts.map(function(row) { return row.module_name; });
-            var mod_sql = 'SELECT * FROM `modules` WHERE name IN (' + repeat('?', names.length).split('').join(',') + ')';
+            var names   = cnts.map(function(row) { return row.module_name; }).concat(args);
+            var mod_sql = 'SELECT * FROM `modules` WHERE `name` IN (' + repeat('?', names.length).split('').join(',') + ')';
 
             db.all(mod_sql, names, function(err, mods) {
-                var results, mod_len;
+                var exacts, results, mod_len;
 
                 if (err)
                     return reject(err);
 
+                exacts  = [];
                 results = [];
                 mod_len = mods.length;
 
+                mods.forEach(function(mod) {
+                    if (args.indexOf(mod.name) !== -1)
+                        exacts.push(mod);
+                });
+
                 cnts.forEach(function(cnt) {
                     var i = 0, mname = cnt.module_name;
+
+                    if (args.indexOf(mname) !== -1)
+                        return;
 
                     for (; i < mod_len; i += 1) if (mods[i].name === mname) {
                         results.push(mods[i]);
@@ -78,7 +87,7 @@ var do_search   = function(db) {
                     }
                 });
 
-                resolve(results);
+                resolve(exacts.concat(results).slice(0, max_rows));
             })
         });
     });
