@@ -6,7 +6,7 @@ this a a proof-of-concept showing how sqlite might be employed to tackle the bro
 
 1. `npm search` has been broken for a very long time ([see here](https://github.com/npm/npm/issues/6016))
 2. `npm search` is worth having ([dropping of support is being considered in npm v4](https://github.com/npm/npm/issues/11035))
-3. `npm search` that works, when the internet does not, is worth having (also, the latency in my lear-jet is killing ;-))
+3. `npm search` that works, when the internet does not, is worth having (making `npm search` rely on the remote search API is being considered)
 
 ## pre-requisites ...
 
