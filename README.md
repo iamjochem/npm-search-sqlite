@@ -27,7 +27,7 @@ cd npm-search-sqlite
 npm run build
 ```
 
-at this point you probably want to go and walk the dog, make a cup of tea - the `npm run build` creates a sqlite and takes about 15 minutes (my machine is a 2,6 GHz Intel Core i5 MacBookPro with 8GB of RAM and an SSD, YMMV).
+at this point you probably want to go and walk the dog, make a cup of tea - the `npm run build` creates a sqlite and takes about **15 minutes** (my machine is a 2,6 GHz Intel Core i5 MacBookPro with 8GB of RAM and an SSD, YMMV).
 
 once it's complete you can try a search out (`npm run search <SEARCH TERMS>`), e.g.:
 
