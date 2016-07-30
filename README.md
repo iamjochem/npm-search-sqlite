@@ -41,6 +41,7 @@ npm run search moment datetime
 2. My understanding of "streams" is a bit limited - in this regard the "build" code is probably "wrong".
 3. The search-results output generated is only a vague approximation of the nicely formatted `npm` itself outputs.
 4. The query/logic used for search is an approximation of the actual `npm search` logic, the `npm` config settings `searchopts` & `searchexclude` are not considered. 
+5. the SQLite file being created is around 50% larger (300MB+-) than the source JSON file.
 
 ## thoughts ...
 
