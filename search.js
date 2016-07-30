@@ -44,7 +44,7 @@ var do_search   = function(db) {
         throw new Error('no search terms given!');
 
     return new bb(function(resolve, reject) {
-        var args     = process.argv.slice(2);
+        var args     = process.argv.slice(2).map(function(s) { return s.toLowerCase(); });
 
         var find_sql = "SELECT      COUNT(*) AS `cnt`, `module_name`" +
                        "FROM        `words` " +

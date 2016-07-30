@@ -85,7 +85,7 @@ var run         = function(db) {
         instream.pipe(parser);
 
         parser.on('data', function(data) {
-            var name, mod, json, keywords = null;
+            var name, mod, keywords = null;
 
             if (data.key === '_updated')
                 return db.run('INSERT INTO `updated` (`iso8601`) VALUES (?)', moment(data.value).toISOString());
@@ -102,7 +102,6 @@ var run         = function(db) {
             parser.pause();
 
             mod  = helpers.getWords(helpers.stripData(data.value));
-            json = JSON.stringify(data.value);
 
             if (mod.keywords) {
                 if (typeof mod.keywords === 'string')
@@ -113,14 +112,13 @@ var run         = function(db) {
 
             db.run('BEGIN TRANSACTION');
             db.run(
-                'INSERT INTO `modules` (`name`, `description`, `url`, `version`, `keywords`, `time`, `raw_json`) VALUES (?, ?, ?, ?, ?, ?, ?)',
+                'INSERT INTO `modules` (`name`, `description`, `url`, `version`, `keywords`, `time`) VALUES (?, ?, ?, ?, ?, ?)',
                 mod.name,
                 mod.description,
                 mod.url,
                 mod.version && (typeof mod.version === 'string') ? mod.version : null,
                 keywords,
-                mod.time,
-                json
+                mod.time
             );
 
             mod.words.split(' ').forEach(function(w) {

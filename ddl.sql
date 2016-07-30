@@ -10,9 +10,7 @@ CREATE TABLE `modules` (
     `url`           TEXT,
     `version`       TEXT,
     `keywords`      TEXT,
-    `time`          TEXT,
-
-    `raw_json`      TEXT    NOT NULL
+    `time`          TEXT
 );
 
 CREATE TABLE `words` (
