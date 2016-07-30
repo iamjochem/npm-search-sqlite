@@ -10,7 +10,7 @@ this a a proof-of-concept showing how sqlite might be employed to tackle the bro
 
 ## pre-requisites ...
 
-you need to have `npm` installed (obviously)
+you need to have `npm` installed (in addition to running it, your `~/.npm/` dir needs to exist)
 
 you need a local copy of the `npm` JSON cache file, stored in the place `npm` puts it,
 you might not have it, if not run the following:
